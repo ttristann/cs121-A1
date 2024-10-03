@@ -31,3 +31,29 @@ def computeWordFrequencies(tokens):
         main_dict[token] += 1
     
     return main_dict
+
+"""
+Sorts in descending order of the passed argument of an object that holds 
+the tokens and their frequencies  which is assumed to be a dictionary 
+in this case. Then, the tokens are printed in descending order based on
+the token's frequency in the format of: <token> - <frequency>.
+
+The runtime complexity of this function is O(nlogn) because the function has
+to sort the passed argument in descending order while the other operations of
+creating the dictionary, iterating over it, and printing are all O(n) which 
+are less significant to the sorting runtime complexity. 
+"""
+def printFrequencies(token_dict):
+    sorted_dict = dict(sorted(token_dict.items(), key=lambda x: x[1], reverse=True))
+    for token, count in sorted_dict.items():
+        print(f'{token} - {count}')
+
+
+
+"""
+This is just for runnning and testing the code locally. 
+"""
+if __name__ == '__main__':
+    tokens = tokenize("practice_file.txt")
+    token_dict = computeWordFrequencies(tokens)
+    printFrequencies(token_dict)
