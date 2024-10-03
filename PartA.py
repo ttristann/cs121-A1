@@ -3,19 +3,24 @@ from collections import defaultdict
 """
 Automatically opens, closes, and reads the text inside the input file.
 After reading it and converting the text to a string object, regex is
-used to filter to find the alphanumeric text to be converted into token. 
+used to filter to find the alphanumeric text to be converted into token.
+Throws an error if the input is not a valid text file path.
 
 Since this function goes through the whole input text file to filter only
 alphanumeric text, the runtime complexity of the function is O(n).
 """
 def tokenize(TextFilePath):
-    with open(TextFilePath, 'r') as main_file:
-        main_text = main_file.read()
+    try:
+        with open(TextFilePath, 'r') as main_file:
+            main_text = main_file.read()
+        
+        tokens_list = re.findall(r'\b[a-zA-Z0-9]+\b', main_text)
+        tokens_list = [token.lower() for token in tokens_list]
+        
+        return tokens_list
     
-    tokens_list = re.findall(r'\b[a-zA-Z0-9]+\b', main_text)
-    tokens_list = [token.lower() for token in tokens_list]
-    
-    return tokens_list
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Invalid Path: {TextFilePath}")
 
 """
 Creates a default dictionary object to keep track the frequencies of 
@@ -58,7 +63,17 @@ with the proper arguments stemming from the input, and prints
 the token frequencies. 
 """
 if __name__ == '__main__':
-    main_input = input("path or name of the text file: ")
-    tokens = tokenize(main_input)
+    """
+    Asks for an input, if input is valid, it will continue out
+    of the loop, otherwise it will loop back to ask for input again.
+    """
+    while True:
+        try: 
+            main_input = input("Path or Name of the text file: ")
+            tokens = tokenize(main_input)
+            break
+        except FileNotFoundError as error:
+            print(error)
+
     token_dict = computeWordFrequencies(tokens)
     printFrequencies(token_dict)
