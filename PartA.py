@@ -13,5 +13,8 @@ def tokenize(TextFilePath):
         main_text = main_file.read()
     
     tokens_list = re.findall(r'\b[a-zA-Z0-9]+\b', main_text)
+    tokens_list = [token.lower() for token in tokens_list]
     
     return tokens_list
+
+
