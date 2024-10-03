@@ -6,7 +6,7 @@ After reading it and converting the text to a string object, regex is
 used to filter to find the alphanumeric text to be converted into token. 
 
 Since this function goes through the whole input text file to filter only
-alphanumeric text, the runtime complexity of is O(n)
+alphanumeric text, the runtime complexity of the function is O(n).
 """
 def tokenize(TextFilePath):
     with open(TextFilePath, 'r') as main_file:
@@ -17,4 +17,17 @@ def tokenize(TextFilePath):
     
     return tokens_list
 
+"""
+Creates a default dictionary object to keep track the frequencies of 
+the tokens while iterating through the list of tokens that are
+passed to the function. 
 
+The function iterates through the passed argument of list of tokens,
+so the runtime complexity of this function is O(n). 
+"""
+def computeWordFrequencies(tokens): 
+    main_dict = defaultdict(int)
+    for token in tokens:
+        main_dict[token] += 1
+    
+    return main_dict
