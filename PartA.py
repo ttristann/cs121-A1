@@ -51,9 +51,14 @@ def printFrequencies(token_dict):
 
 
 """
-This is just for runnning and testing the code locally. 
+Main program that executes all of the defined functions above.
+It takes an input from the terminal for a path or name of the
+text file to be processed, calls the defined functions above 
+with the proper arguments stemming from the input, and prints
+the token frequencies. 
 """
 if __name__ == '__main__':
-    tokens = tokenize("practice_file.txt")
+    main_input = input("path or name of the text file: ")
+    tokens = tokenize(main_input)
     token_dict = computeWordFrequencies(tokens)
     printFrequencies(token_dict)
