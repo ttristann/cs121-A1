@@ -12,15 +12,22 @@ alphanumeric text, the runtime complexity of the function is O(n).
 def tokenize(TextFilePath):
     try:
         with open(TextFilePath, 'r') as main_file:
-            main_text = main_file.read()
+            current_token = ""
+            for line in main_file:
+                for char in line:
+                    if char.isalnum():
+                        current_token += char.lower()
+                    else:
+                        if current_token:
+                            yield current_token
+                            current_token = ""
+
+            if current_token:
+                yield current_token
         
-        tokens_list = re.findall(r'\b[a-zA-Z0-9]+\b', main_text)
-        tokens_list = [token.lower() for token in tokens_list]
-        
-        return tokens_list
-    
     except FileNotFoundError:
         raise FileNotFoundError(f"Invalid Path: {TextFilePath}")
+        return
 
 """
 Creates a default dictionary object to keep track the frequencies of 
