@@ -13,15 +13,15 @@ runtime complexity of the function is O(n).
 """
 def tokenize(TextFilePath):
     with open(TextFilePath, 'r') as main_file:
-        current_token = ""
+        current_token = []
         for line in main_file:
             for char in line:
                 if char.isalnum():
-                    current_token += char.lower()
+                    current_token.append(char.lower()) 
                 else:
                     if current_token:
-                        yield current_token
-                        current_token = ""
+                        yield ''.join(current_token)
+                        current_token = []
 
         if current_token:
             yield current_token

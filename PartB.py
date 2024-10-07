@@ -27,5 +27,4 @@ if __name__ == '__main__':
     token_dict2 = pA.computeWordFrequencies(tokens2)
     # finding the intersection
     common_tokens = token_dict1.keys() & token_dict2.keys()
-    print(common_tokens)
     print(f"The two files have {len(common_tokens)} tokens in common which are:\n{common_tokens}")
