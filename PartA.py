@@ -12,19 +12,24 @@ every character of each line to filter only alphanumeric text, the
 runtime complexity of the function is O(n).
 """
 def tokenize(TextFilePath):
-    with open(TextFilePath, 'r') as main_file:
-        current_token = []
-        for line in main_file:
-            for char in line:
-                if char.isalnum():
-                    current_token.append(char.lower()) 
-                else:
-                    if current_token:
-                        yield ''.join(current_token)
-                        current_token = []
+    try:
+        with open(TextFilePath, 'r') as main_file:
+            current_token = []
+            for line in main_file:
+                for char in line:
+                    if char.isalnum():
+                        current_token.append(char.lower()) 
+                    else:
+                        if current_token:
+                            yield ''.join(current_token)
+                            current_token = []
 
-        if current_token:
-            yield current_token
+            if current_token:
+                yield current_token
+    except FileNotFoundError as file_error:
+        print(f"The file does not exist: {TextFilePath}")
+    except UnicodeDecodeError as decode_error:
+        print(f"The file cannot be decoded: {TextFilePath}")
 
 """
 Creates a default dictionary object to keep track the frequencies of 
@@ -75,4 +80,4 @@ if __name__ == '__main__':
         main_dict = computeWordFrequencies(main_file)
         printFrequencies(main_dict)
     except IndexError as error:
-        print(f"Something went wrong: {error}")
+        print(f"Arguments cannot be indexed propeperly")
