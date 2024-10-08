@@ -18,7 +18,7 @@ def tokenize(TextFilePath):
             current_token = [] # the collector of each char that builds up to a token
             for line in main_file:
                 for char in line:
-                    if char.isalnum():
+                    if ('A' <= char <='Z') or ('a' <= char <= 'z') or ('0' <= char <= '9'): # checking for alphanumeric value
                         current_token.append(char.lower()) # O(1) - lowers the char to account for capitalization
                     else:
                         if current_token:
