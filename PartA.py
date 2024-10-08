@@ -25,7 +25,7 @@ def tokenize(TextFilePath):
                             yield ''.join(current_token) # O(n) - uses join to build together word that counts as a token
                             current_token = [] # resets it to make a new token
             if current_token:
-                yield current_token # accounts for the last token to be yielded
+                yield ''.join(current_token) # accounts for the last token to be yielded
     except FileNotFoundError as file_error:
         print(f"The file does not exist: {TextFilePath}")
     except UnicodeDecodeError as decode_error:
