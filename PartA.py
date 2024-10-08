@@ -1,4 +1,4 @@
-import os
+import os, sys
 from collections import defaultdict
 """
 Automatically opens, closes, and reads the text inside the input file.
@@ -68,13 +68,11 @@ the token frequencies.
 """
 if __name__ == '__main__':
     """
-    Asks for an input, if input is valid, it will continue out
-    of the loop, otherwise it will loop back to ask for input again.
+    NEED TO WRITE A BETTER COMMENT
     """
-    while True:
-        main_input = input("Path or Name of the text file: ")
-        if os.path.exists(main_input) : break
-        else: print(f"Invalid File: {main_input}")
-    tokens = tokenize(main_input)
-    token_dict = computeWordFrequencies(tokens)
-    printFrequencies(token_dict)
+    try:
+        main_file = tokenize(sys.argv[1])
+        main_dict = computeWordFrequencies(main_file)
+        printFrequencies(main_dict)
+    except IndexError as error:
+        print(f"Something went wrong: {error}")
