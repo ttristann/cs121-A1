@@ -28,6 +28,7 @@ def tokenize(TextFilePath):
                 yield ''.join(current_token) # accounts for the last token to be yielded
     except FileNotFoundError as file_error:
         print(f"The file does not exist: {TextFilePath}")
+        sys.exit(1)
     except UnicodeDecodeError as decode_error:
         print(f"The file cannot be decoded: {TextFilePath}")
 

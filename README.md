@@ -1,6 +1,3 @@
 # cs121-A1
 TO DO:
-- ask on ed discussion: should the amount of tokens in common should still be printed if one of the files is invalid or both? - (prints 0)
-- keep testing code
-- write explanation for partb runtime complexity
-    - maybe rewrite it to not use compute word frequencies to make it more efficient
+- maybe rewrite the tokenize function to return None in the except blocks so a process_file function can be written to run the main program and be able to skip printing when one of the files are invalid
