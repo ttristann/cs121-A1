@@ -2,10 +2,17 @@ import PartA as pA
 import os, sys
 
 """
-need comments that explains the runtime of the 
-following program
+The main program calls the tokenize function for each text file inputted
+into the terminal and then creates a set of unique of tokens generated
+from the tokenize function. It then checks the intersection of those two
+sets of unique tokens and counts it. 
 
-not sure if __name__ == '__main__' is needed
+Since the tokenize function being called twice which would be O(n) + O(m), 
+the creation of the two unique sets of tokens which would be O(n1) + (m1), 
+and finding the intersection of those two unique sets is O(min(n1, m1)),
+the total runtime complexity is O(n + n1 + m + m1 + min(n1, m1)). 
+However, this complexity can be simplified to just O(n + m) because usually
+there would be less unique tokens than the total tokens (n > n1 & m > m1).
 """
 if __name__ == '__main__':
     try:
