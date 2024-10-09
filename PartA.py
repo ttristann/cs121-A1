@@ -14,7 +14,7 @@ the runtime complexity of the function is O(n).
 """
 def tokenize(TextFilePath):
     try:
-        with open(TextFilePath, 'r') as main_file:
+        with open(TextFilePath, 'r', encoding = "utf-8") as main_file:
             current_token = [] # the collector of each char that builds up to a token
             for line in main_file:
                 for char in line:
