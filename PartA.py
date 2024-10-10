@@ -73,3 +73,7 @@ if __name__ == '__main__':
         printFrequencies(main_dict)
     except IndexError as error:
         print(f"Arguments cannot be indexed properly")
+    except FileNotFoundError as file_error:
+        print(f"The file does not exist: {file_error.filename}")
+    except UnicodeDecodeError as decode_error:
+        print(f"The file cannot be decoded: {sys.argv[decode_error.start]}")
