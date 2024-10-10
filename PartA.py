@@ -13,24 +13,19 @@ looking at every character of each line to filter only alphanumeric text,
 the runtime complexity of the function is O(n).
 """
 def tokenize(TextFilePath):
-    try:
-        with open(TextFilePath, 'r', encoding = "utf-8") as main_file:
-            current_token = [] # the collector of each char that builds up to a token
-            for line in main_file:
-                for char in line:
-                    if ('A' <= char <='Z') or ('a' <= char <= 'z') or ('0' <= char <= '9'): # checking for alphanumeric value
-                        current_token.append(char.lower()) # O(1) - lowers the char to account for capitalization
-                    else:
-                        if current_token:
-                            yield ''.join(current_token) # O(n) - uses join to build together word that counts as a token
-                            current_token = [] # resets it to make a new token
-            if current_token:
-                yield ''.join(current_token) # accounts for the last token to be yielded
-    except FileNotFoundError as file_error:
-        print(f"The file does not exist: {TextFilePath}")
-    except UnicodeDecodeError as decode_error:
-        print(f"The file cannot be decoded: {TextFilePath}")
-
+    with open(TextFilePath, 'r', encoding = "utf-8") as main_file:
+        current_token = [] # the collector of each char that builds up to a token
+        for line in main_file:
+            for char in line:
+                if ('A' <= char <='Z') or ('a' <= char <= 'z') or ('0' <= char <= '9'): # checking for alphanumeric value
+                    current_token.append(char.lower()) # O(1) - lowers the char to account for capitalization
+                else:
+                    if current_token:
+                        yield ''.join(current_token) # O(n) - uses join to build together word that counts as a token
+                        current_token = [] # resets it to make a new token
+        if current_token:
+            yield ''.join(current_token) # accounts for the last token to be yielded
+            
 """
 Creates a default dictionary object to keep track the frequencies of 
 the tokens while iterating through the stream of tokens that are 
